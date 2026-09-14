@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class UserGuide extends Model
+{
+    protected $fillable = [
+        'judul',
+        'deskripsi',
+        'file',
+        'is_active',
+    ];
+}
