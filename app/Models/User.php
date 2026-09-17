@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Panel;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -69,5 +70,10 @@ class User extends Authenticatable implements FilamentUser
     public function views()
     {
         return $this->hasMany(DocumentView::class);
+    }
+
+    public function author(): HasOne
+    {
+        return $this->hasOne(Author::class);
     }
 }

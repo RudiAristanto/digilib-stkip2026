@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Services\AuthorAccountService;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -22,13 +23,21 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request,
+    AuthorAccountService $authorAccountService): RedirectResponse
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
+    $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+    // Hubungkan akun dengan Author berdasarkan email.
+    $authorAccountService->connect(
+        $request->user()
+    );
+
+    return redirect()->intended(
+        route('dashboard', absolute: false)
+    );
     }
 
     /**

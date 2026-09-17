@@ -152,6 +152,70 @@
 
                         </div>
 
+                        {{-- Program Studi --}}
+                        <div class="border-t border-slate-200 pt-5">
+
+                            <div class="mb-3">
+                                <h3 class="font-semibold text-slate-700">
+                                    Program Studi
+                                </h3>
+
+                                <div class="mt-2 h-0.5 w-12 rounded bg-yellow-400"></div>
+                            </div>
+
+                            <div class="max-h-56 space-y-2.5 overflow-y-auto pr-2">
+
+                                @foreach($studyPrograms as $prodi)
+
+                                    <label
+                                        class="flex cursor-pointer items-start gap-2.5
+                                            text-sm text-slate-600 transition
+                                            hover:text-blue-700"
+                                    >
+
+                                        <input
+                                            type="checkbox"
+                                            name="prodi[]"
+                                            value="{{ $prodi->id }}"
+
+                                            @checked(
+                                                in_array(
+                                                    (string) $prodi->id,
+                                                    array_map(
+                                                        'strval',
+                                                        (array) request('prodi', [])
+                                                    )
+                                                )
+                                            )
+
+                                            class="mt-0.5 h-4 w-4 rounded
+                                                border-slate-300 text-blue-700
+                                                focus:ring-blue-600"
+                                        >
+
+                                        <span class="flex flex-1 items-center justify-between gap-2">
+
+                                            <span class="leading-5">
+                                                {{ $prodi->nama_prodi }}
+                                            </span>
+
+                                            <span
+                                                class="shrink-0 rounded-full bg-slate-100
+                                                    px-2 py-0.5 text-xs font-medium text-slate-500"
+                                            >
+                                                {{ $prodi->published_documents_count }}
+                                            </span>
+
+                                        </span>
+
+                                    </label>
+
+                                @endforeach
+
+                            </div>
+
+                        </div>
+
                         {{-- Tahun --}}
                         <div>
 

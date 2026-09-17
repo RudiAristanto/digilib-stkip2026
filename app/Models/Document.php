@@ -51,6 +51,8 @@ protected $fillable = [
 
         'review_note',
 
+        'study_program_id'
+
     ];
 
     protected static function booted(): void
@@ -98,6 +100,11 @@ protected $fillable = [
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function studyProgram(): BelongsTo
+    {
+        return $this->belongsTo(StudyProgram::class);
     }
 
 }

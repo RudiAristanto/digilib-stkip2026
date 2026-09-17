@@ -43,6 +43,13 @@ class DocumentsTable
                     ->badge()
                     ->color('primary'),
 
+                TextColumn::make('studyProgram.nama_prodi')
+                    ->label('Program Studi')
+                    ->searchable()
+                    ->sortable()
+                    ->badge()
+                    ->placeholder('-'),
+
                 TextColumn::make('tahun_terbit')
                     ->sortable(),
 
@@ -101,6 +108,15 @@ class DocumentsTable
                         'public' => 'Public',
                         'private' => 'Private',
                     ]),
+                
+                SelectFilter::make('study_program_id')
+                    ->label('Program Studi')
+                    ->relationship(
+                        'studyProgram',
+                        'nama_prodi'
+                    )
+                    ->searchable()
+                    ->preload(),
             ])
             ->recordActions([
                 ViewAction::make(),

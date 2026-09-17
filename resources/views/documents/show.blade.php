@@ -115,67 +115,144 @@
                     </div>
 
 
-                    <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 leading-tight">
+                    <h1 class="text-xl lg:text-2xl font-bold text-slate-900 leading-tight">
 
                         {{ $document->judul }}
 
                     </h1>
 
 
-                    <div class="mt-5 space-y-3 text-slate-600">
+                    {{-- Metadata Dokumen --}}
+                    <div class="mt-6 grid gap-3 sm:grid-cols-2">
 
-                        <div class="flex items-center gap-3">
+                        {{-- Penulis --}}
+                        <div class="flex items-center gap-3 rounded-xl bg-slate-50 p-3.5">
 
-                            <x-heroicon-o-user class="w-5 h-5 text-slate-400" />
+                            @if($document->author?->foto_url)
 
-                            <div>
-                                <span class="text-sm text-slate-400">
+                                <img
+                                    src="{{ $document->author->foto_url }}"
+                                    alt="{{ $document->author->nama_penulis }}"
+                                    class="h-11 w-11 shrink-0 rounded-full
+                                        border border-slate-200 object-cover"
+                                >
+
+                            @else
+
+                                <div
+                                    class="flex h-11 w-11 shrink-0 items-center
+                                        justify-center rounded-full bg-white
+                                        border border-slate-200"
+                                >
+                                    <x-heroicon-o-user
+                                        class="h-5 w-5 text-slate-400"
+                                    />
+                                </div>
+
+                            @endif
+
+                            <div class="min-w-0">
+
+                                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">
                                     Penulis
-                                </span>
+                                </p>
 
-                                <div class="font-medium text-slate-700">
-
+                                <p class="mt-0.5 truncate font-semibold text-slate-800">
                                     {{ $document->author?->nama_penulis ?? '-' }}
+                                </p>
 
-                                </div>
+                                @if($document->author?->nim_nidn)
+
+                                    <p class="mt-0.5 text-xs text-slate-500">
+                                        {{ $document->author->nim_nidn }}
+                                    </p>
+
+                                @endif
+
                             </div>
 
                         </div>
 
 
-                        <div class="flex items-center gap-3">
+                        {{-- Program Studi --}}
+                        <div class="flex items-center gap-3 rounded-xl bg-slate-50 p-3.5">
 
-                            <x-heroicon-o-calendar-days class="w-5 h-5 text-slate-400" />
+                            <div
+                                class="flex h-11 w-11 shrink-0 items-center
+                                    justify-center rounded-xl bg-white
+                                    border border-slate-200"
+                            >
+                                <x-heroicon-o-academic-cap
+                                    class="h-5 w-5 text-blue-600"
+                                />
+                            </div>
+
+                            <div class="min-w-0">
+
+                                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">
+                                    Program Studi
+                                </p>
+
+                                <p class="mt-0.5 font-semibold leading-5 text-slate-800">
+                                    {{ $document->studyProgram?->nama_prodi ?? '-' }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- Tahun Terbit --}}
+                        <div class="flex items-center gap-3 rounded-xl bg-slate-50 p-3.5">
+
+                            <div
+                                class="flex h-11 w-11 shrink-0 items-center
+                                    justify-center rounded-xl bg-white
+                                    border border-slate-200"
+                            >
+                                <x-heroicon-o-calendar-days
+                                    class="h-5 w-5 text-blue-600"
+                                />
+                            </div>
 
                             <div>
-                                <span class="text-sm text-slate-400">
+
+                                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">
                                     Tahun Terbit
-                                </span>
+                                </p>
 
-                                <div class="font-medium text-slate-700">
+                                <p class="mt-0.5 font-semibold text-slate-800">
+                                    {{ $document->tahun_terbit ?? '-' }}
+                                </p>
 
-                                    {{ $document->tahun_terbit }}
-
-                                </div>
                             </div>
 
                         </div>
 
 
-                        <div class="flex items-center gap-3">
+                        {{-- Bahasa --}}
+                        <div class="flex items-center gap-3 rounded-xl bg-slate-50 p-3.5">
 
-                            <x-heroicon-o-language class="w-5 h-5 text-slate-400" />
+                            <div
+                                class="flex h-11 w-11 shrink-0 items-center
+                                    justify-center rounded-xl bg-white
+                                    border border-slate-200"
+                            >
+                                <x-heroicon-o-language
+                                    class="h-5 w-5 text-blue-600"
+                                />
+                            </div>
 
                             <div>
-                                <span class="text-sm text-slate-400">
+
+                                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">
                                     Bahasa
-                                </span>
+                                </p>
 
-                                <div class="font-medium text-slate-700">
-
+                                <p class="mt-0.5 font-semibold text-slate-800">
                                     {{ $document->bahasa ?? 'Indonesia' }}
+                                </p>
 
-                                </div>
                             </div>
 
                         </div>
@@ -184,34 +261,49 @@
 
 
                     {{-- Statistik --}}
-                    <div class="mt-7 flex flex-wrap gap-6 border-t border-slate-200 pt-6">
+                    <div class="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3
+                                border-t border-slate-200 pt-5">
 
-                        <div class="flex items-center gap-2 text-slate-600">
+                        <div class="flex items-center gap-2 text-sm text-slate-500">
 
-                            <x-heroicon-o-eye class="w-5 h-5" />
+                            <x-heroicon-o-eye class="h-5 w-5 text-slate-400" />
 
                             <span>
-                                {{ number_format($document->jumlah_view) }} View
+                                <strong class="font-semibold text-slate-700">
+                                    {{ number_format($document->jumlah_view) }}
+                                </strong>
+                                View
                             </span>
 
                         </div>
 
-                        <div class="flex items-center gap-2 text-slate-600">
 
-                            <x-heroicon-o-arrow-down-tray class="w-5 h-5" />
+                        <div class="flex items-center gap-2 text-sm text-slate-500">
+
+                            <x-heroicon-o-arrow-down-tray
+                                class="h-5 w-5 text-slate-400"
+                            />
 
                             <span>
-                                {{ number_format($document->jumlah_download) }} Download
+                                <strong class="font-semibold text-slate-700">
+                                    {{ number_format($document->jumlah_download) }}
+                                </strong>
+                                Download
                             </span>
 
                         </div>
 
-                        <div class="flex items-center gap-2 text-slate-600">
 
-                            <x-heroicon-o-circle-stack class="w-5 h-5" />
+                        <div class="flex items-center gap-2 text-sm text-slate-500">
+
+                            <x-heroicon-o-circle-stack
+                                class="h-5 w-5 text-slate-400"
+                            />
 
                             <span>
-                                {{ $document->formatted_file_size }}
+                                <strong class="font-semibold text-slate-700">
+                                    {{ $document->formatted_file_size }}
+                                </strong>
                             </span>
 
                         </div>

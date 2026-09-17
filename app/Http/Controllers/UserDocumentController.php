@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Category;
 use App\Models\Document;
+use App\Models\StudyProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\File;
@@ -60,9 +61,12 @@ class UserDocumentController extends Controller
             ]
         );
 
+        $studyPrograms = StudyProgram::orderBy('nama_prodi')->get();
+
         return view('dashboard.documents.create', compact(
             'categories',
-            'author'
+            'author',
+            'studyPrograms'
         ));
     }
 
@@ -76,9 +80,12 @@ class UserDocumentController extends Controller
             ->orderBy('nama_kategori')
             ->get();
 
+        $studyPrograms = StudyProgram::orderBy('nama_prodi')->get();
+        
         return view('dashboard.documents.edit', compact(
             'document',
-            'categories'
+            'categories',
+            'studyPrograms'
         ));
     }
 
@@ -103,6 +110,11 @@ class UserDocumentController extends Controller
                 'integer',
                 'min:1900',
                 'max:' . now()->year,
+            ],
+
+            'study_program_id' => [
+                'required',
+                'exists:study_programs,id',
             ],
 
             'kata_kunci' => [
@@ -136,6 +148,7 @@ class UserDocumentController extends Controller
 
         $data = [
             'category_id' => $validated['category_id'],
+            'study_program_id' => $validated['study_program_id'],
             'judul' => $validated['judul'],
             'slug' => Str::slug($validated['judul'])
                 . '-' . Str::lower(Str::random(6)),
@@ -218,6 +231,11 @@ class UserDocumentController extends Controller
                 'exists:categories,id',
             ],
 
+            'study_program_id' => [
+                'required',
+                'exists:study_programs,id',
+            ],
+
             'tahun_terbit' => [
                 'required',
                 'integer',
@@ -281,6 +299,8 @@ class UserDocumentController extends Controller
             'abstrak' => $validated['abstrak'],
 
             'kata_kunci' => $validated['kata_kunci'] ?? null,
+
+            'study_program_id' => $request->study_program_id,
 
             'tahun_terbit' => $validated['tahun_terbit'],
 

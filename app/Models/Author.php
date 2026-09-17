@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Author extends Model
@@ -12,9 +13,11 @@ class Author extends Model
     
      protected $fillable = [
         'nama_penulis',
+        'user_id',
         'nim_nidn',
         'email',
         'status',
+        'foto',
     ];
 
     // protected $casts = [
@@ -24,5 +27,20 @@ class Author extends Model
     public function documents(): HasMany
     {
         return $this->hasMany(Document::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getFotoUrlAttribute(): ?string
+    {
+        if (! $this->foto) {
+            return null;
+        }
+
+        return asset('storage/' . $this->foto)
+            . '?v=' . $this->updated_at?->timestamp;
     }
 }

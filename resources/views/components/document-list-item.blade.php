@@ -72,10 +72,46 @@
 
             <div class="mt-3 text-gray-500 flex items-center gap-1.5">
 
-                <x-heroicon-o-user class="w-4 h-4" />
-                <span>{{ $document->author->nama_penulis }}</span>
+                <!-- <x-heroicon-o-user class="w-4 h-4" />
+                <span>{{ $document->author->nama_penulis }}</span> -->
+                
+                @if($document->author)
+
+                    <div class="flex items-center gap-2">
+
+                        @if($document->author->foto_url)
+
+                            <img
+                                src="{{ $document->author->foto_url }}"
+                                alt="{{ $document->author->nama_penulis }}"
+                                class="h-8 w-8 rounded-full border border-slate-200 object-cover"
+                                loading="lazy"
+                            >
+
+                        @else
+
+                            <div
+                                class="flex h-8 w-8 items-center justify-center
+                                    rounded-full bg-slate-100 text-slate-400"
+                            >
+                                <x-heroicon-o-user class="h-4 w-4" />
+                            </div>
+
+                        @endif
+
+                        <span class="text-sm text-slate-600">
+                            {{ $document->author->nama_penulis }}
+                        </span>
+
+                    </div>
+
+                @endif
+                
+                <x-heroicon-o-academic-cap class="h-4 w-4" />
+                <span>{{ $document->studyProgram->nama_prodi }}</span>
 
             </div>
+            
 
             <p
                 class="mt-5 text-gray-600 leading-7 line-clamp-3">

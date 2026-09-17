@@ -37,7 +37,7 @@ class UserDashboardController extends Controller
         ];
 
         $latestDocuments = Document::query()
-            ->with(['category', 'author'])
+            ->with(['category', 'author','studyProgram'])
             ->where('user_id', $userId)
             ->latest()
             ->take(5)

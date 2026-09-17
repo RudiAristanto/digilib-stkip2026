@@ -105,6 +105,16 @@ class DocumentForm
                             ->preload()
                             ->required(),
 
+                        Select::make('study_program_id')
+                            ->label('Program Studi')
+                            ->relationship(
+                                name: 'studyProgram',
+                                titleAttribute: 'nama_prodi'
+                            )
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+
                         Select::make('author_id')
                             ->label('Penulis')
                             ->relationship('author', 'nama_penulis')

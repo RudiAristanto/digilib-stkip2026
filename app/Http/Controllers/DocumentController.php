@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Document;
 use App\Models\Author;
+use App\Models\StudyProgram;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -44,6 +45,15 @@ class DocumentController extends Controller
                                 'like',
                                 "%{$search}%"
                             );
+                        })
+
+                        // Cari berdasarkan Program Studi
+                        ->orWhereHas('studyProgram', function ($query) use ($search) {
+                            $query->where(
+                                'nama_prodi',
+                                'like',
+                                "%{$search}%"
+                            );
                         });
 
                 });
@@ -58,6 +68,20 @@ class DocumentController extends Controller
             // FILTER PENULIS
             ->when($request->author, function ($query, $author) {
                 $query->where('author_id', $author);
+            })
+
+             /*
+            |--------------------------------------------------------------------------
+            | FILTER PROGRAM STUDI
+            |--------------------------------------------------------------------------
+            */
+            ->when($request->prodi, function ($query, $prodi) {
+
+                $query->whereIn(
+                    'study_program_id',
+                    (array) $prodi
+                );
+
             })
 
             // FILTER TAHUN
@@ -111,6 +135,21 @@ class DocumentController extends Controller
             ->orderBy('nama_penulis')
             ->get();
 
+        $studyPrograms = StudyProgram::query()
+
+            ->whereHas('documents', function ($query) {
+                $query->where('status', 'published');
+            })
+
+            ->withCount([
+                'documents as published_documents_count' => function ($query) {
+                    $query->where('status', 'published');
+                }
+            ])
+
+            ->orderBy('nama_prodi')
+
+            ->get();
 
         $years = Document::query()
             ->where('status', 'published')
@@ -125,6 +164,7 @@ class DocumentController extends Controller
             'documents',
             'categories',
             'authors',
+            'studyPrograms',
             'years'
         ));
     }
@@ -135,6 +175,7 @@ class DocumentController extends Controller
             'author',
             'category',
             'user',
+            'studyProgram',
         ]);
 
         abort_unless(

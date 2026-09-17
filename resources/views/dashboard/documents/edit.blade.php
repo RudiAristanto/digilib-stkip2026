@@ -80,6 +80,43 @@
 
                 </div>
 
+                <div>
+                    <label
+                        for="study_program_id"
+                        class="block text-sm font-medium text-gray-700"
+                    >
+                        Program Studi
+                        <span class="text-red-500">*</span>
+                    </label>
+
+                    <select
+                        name="study_program_id"
+                        id="study_program_id"
+                        required
+                        class="mt-1 block w-full rounded-lg border-gray-300
+                            shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    >
+                        <option value="">Pilih Program Studi</option>
+
+                        @foreach ($studyPrograms as $prodi)
+                            <option
+                                value="{{ $prodi->id }}"
+                                @selected(
+                                    old('study_program_id', $document->study_program_id)
+                                    == $prodi->id
+                                )
+                            >
+                                {{ $prodi->nama_prodi }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    @error('study_program_id')
+                        <p class="mt-1 text-sm text-red-600">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
 
                 <div>
 

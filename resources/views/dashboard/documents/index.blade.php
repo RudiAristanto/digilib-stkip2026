@@ -191,6 +191,10 @@
                                     Tahun: {{ $document->tahun_terbit }}
                                 </span>
 
+                                <span>
+                                    {{ $document->studyProgram?->nama_prodi ?? '-' }}
+                                </span>
+
                                 <span class="flex items-center gap-1">
 
                                     <x-heroicon-o-eye class="h-4 w-4" />

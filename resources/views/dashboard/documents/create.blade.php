@@ -107,11 +107,32 @@
 
                         </div>
 
-                        <p class="mt-2 text-sm text-slate-500">
-                            Penulis otomatis mengikuti akun yang sedang login.
-                        </p>
-
                     </div>
+
+                    <div>
+                    {{-- Prodi --}}
+                    <label class="mb-2 block font-semibold text-slate-700">
+                        Program Studi
+                    </label>
+
+                    <select
+                        name="study_program_id"
+                        id="study_program_id"
+                        required
+                    >
+                        <option value="">Pilih Program Studi</option>
+
+                        @foreach ($studyPrograms as $prodi)
+                            <option
+                                value="{{ $prodi->id }}"
+                                @selected(old('study_program_id') == $prodi->id)
+                            >
+                                {{ $prodi->nama_prodi }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                </div>
 
 
                 {{-- Tahun --}}

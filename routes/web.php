@@ -10,6 +10,7 @@ use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserDocumentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\AuthorPhotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,6 +118,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::delete('/profile', [ProfileController::class, 'destroy'])
         ->name('profile.destroy');
+
+    Route::patch(
+            '/profile/photo',
+            [AuthorPhotoController::class, 'update']
+        )->name('profile.photo.update');
     
     /*
     |--------------------------------------------------------------------------
