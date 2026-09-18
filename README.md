@@ -82,7 +82,7 @@ Fitur yang tersedia:
 
 DIGILIB menyediakan pengelolaan data penulis dokumen.
 
-Data penulis meliputi:
+Data penulis meliputi :
 
 - Nama penulis
 - NIDN / NIM
