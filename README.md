@@ -195,7 +195,7 @@ Data tersebut dapat digunakan untuk mengetahui dokumen yang paling banyak diliha
 
 ---
 
-# 🛠️ Tech Stack
+# Tech Stack
 
 | Technology | Keterangan |
 |---|---|
@@ -837,7 +837,7 @@ git push origin feature/nama-fitur
 
 ---
 
-# 👨‍💻 Developer
+#  Developer
 
 ### Rudi Aristanto
 
