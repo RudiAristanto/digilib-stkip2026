@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📚 DIGILIB STKIP
+# DIGILIB STKIP
 
 ### Digital Library Management System
 
@@ -17,29 +17,29 @@
 
 ---
 
-## 📖 Tentang DIGILIB STKIP
+## Tentang DIGILIB STKIP
 
 **DIGILIB STKIP** adalah aplikasi perpustakaan digital berbasis web yang dikembangkan untuk membantu pengelolaan karya ilmiah dan dokumen akademik di **STKIP PGRI Ponorogo**.
 
 Aplikasi ini memungkinkan pengguna untuk menyimpan, mengelola, mencari, membaca, dan mengunduh berbagai koleksi digital seperti:
 
-- 📘 Skripsi
-- 📗 Tesis
-- 📕 Disertasi
-- 📰 Jurnal
-- 📚 Buku
-- 📄 Artikel Ilmiah
-- 🔬 Laporan Penelitian
-- 📑 Prosiding
-- 📝 Karya Tulis Ilmiah lainnya
+- Skripsi
+- Tesis
+- Disertasi
+- Jurnal
+- Buku
+- Artikel Ilmiah
+- Laporan Penelitian
+- Prosiding
+- Karya Tulis Ilmiah lainnya
 
 DIGILIB STKIP dibangun menggunakan **Laravel 12** dengan **Filament 4** sebagai Admin Panel.
 
 ---
 
-# ✨ Fitur Utama
+# Fitur Utama
 
-## 📊 Dashboard Admin
+## Dashboard Admin
 
 Dashboard digunakan untuk memberikan informasi dan statistik mengenai data yang terdapat di dalam aplikasi.
 
@@ -54,31 +54,31 @@ Beberapa informasi yang dapat ditampilkan antara lain:
 
 ---
 
-## 📚 Manajemen Dokumen
+## Manajemen Dokumen
 
 Admin dapat melakukan pengelolaan dokumen digital melalui Admin Panel.
 
 Fitur yang tersedia:
 
-- ➕ Tambah dokumen
-- ✏️ Edit dokumen
-- 👁️ Lihat detail dokumen
-- 🗑️ Hapus dokumen
-- 📤 Upload file PDF
-- 📝 Judul dokumen
-- 📖 Abstrak
-- 🏷️ Kata kunci
-- 📅 Tahun terbit
-- 👨‍🎓 Penulis
-- 🗂️ Kategori
-- 🎓 Program studi
-- 🔐 Pengaturan akses dokumen
-- 👁️ Statistik jumlah view
-- 📥 Statistik jumlah download
+- Tambah dokumen
+- Edit dokumen
+- Lihat detail dokumen
+- Hapus dokumen
+- Upload file PDF
+- Judul dokumen
+- Abstrak
+- Kata kunci
+- Tahun terbit
+- Penulis
+- Kategori
+- Program studi
+- Pengaturan akses dokumen
+- Statistik jumlah view
+- Statistik jumlah download
 
 ---
 
-## 👨‍🎓 Manajemen Penulis
+## Manajemen Penulis
 
 DIGILIB menyediakan pengelolaan data penulis dokumen.
 
@@ -95,7 +95,7 @@ Data penulis meliputi:
 
 ---
 
-## 🗂️ Manajemen Kategori
+## Manajemen Kategori
 
 Admin dapat membuat dan mengelola kategori dokumen.
 
@@ -113,7 +113,7 @@ Contoh kategori:
 
 ---
 
-## 🎓 Manajemen Program Studi
+## Manajemen Program Studi
 
 Dokumen dapat dikelompokkan berdasarkan program studi.
 
@@ -127,11 +127,11 @@ Fitur:
 
 ---
 
-## 👥 Manajemen Pengguna
+## Manajemen Pengguna
 
 Sistem memiliki pengelolaan akun pengguna dengan pembagian hak akses.
 
-### 👑 Admin
+### Admin
 
 Admin memiliki akses untuk:
 
@@ -145,7 +145,7 @@ Admin memiliki akses untuk:
 - Melihat statistik aplikasi
 - Monitoring aktivitas sistem
 
-### 👤 User / Mahasiswa
+### User / Mahasiswa
 
 User atau mahasiswa dapat:
 
@@ -158,7 +158,7 @@ User atau mahasiswa dapat:
 
 ---
 
-## 🔍 Pencarian Dokumen
+## Pencarian Dokumen
 
 Pengguna dapat mencari koleksi digital berdasarkan informasi dokumen seperti:
 
@@ -171,7 +171,7 @@ Pengguna dapat mencari koleksi digital berdasarkan informasi dokumen seperti:
 
 ---
 
-## 📥 Download Dokumen
+## Download Dokumen
 
 Sistem mendukung pengunduhan dokumen digital dengan pencatatan aktivitas download.
 
@@ -184,7 +184,7 @@ Fitur meliputi:
 
 ---
 
-## 👁️ Statistik Dokumen
+## Statistik Dokumen
 
 Setiap dokumen dapat memiliki statistik:
 
@@ -213,13 +213,13 @@ Data tersebut dapat digunakan untuk mengetahui dokumen yang paling banyak diliha
 
 ---
 
-# 🚀 Instalasi
+# Instalasi
 
 Ikuti langkah-langkah berikut untuk menjalankan **DIGILIB STKIP** pada komputer lokal.
 
 ---
 
-## 1️⃣ Persyaratan Sistem
+## Persyaratan Sistem
 
 Pastikan komputer sudah memiliki:
 
@@ -240,7 +240,7 @@ Laragon
 
 ---
 
-## 2️⃣ Clone Repository
+## Clone Repository
 
 Clone repository DIGILIB STKIP:
 
@@ -256,7 +256,7 @@ cd digilibstkip
 
 ---
 
-## 3️⃣ Install Dependency PHP
+## Install Dependency PHP
 
 Jalankan:
 
@@ -268,7 +268,7 @@ Tunggu sampai seluruh dependency Laravel selesai di-install.
 
 ---
 
-## 4️⃣ Install Dependency Frontend
+## Install Dependency Frontend
 
 Jalankan:
 
@@ -290,7 +290,7 @@ npm run dev
 
 ---
 
-## 5️⃣ Buat File `.env`
+## Buat File `.env`
 
 Copy file:
 
@@ -318,7 +318,7 @@ cp .env.example .env
 
 ---
 
-## 6️⃣ Generate Application Key
+## Generate Application Key
 
 Jalankan:
 
@@ -334,7 +334,7 @@ Application key set successfully.
 
 ---
 
-## 7️⃣ Buat Database
+## Buat Database
 
 Buat database MySQL baru.
 
@@ -356,7 +356,7 @@ atau melalui aplikasi database manager seperti HeidiSQL.
 
 ---
 
-## 8️⃣ Konfigurasi Database
+## Konfigurasi Database
 
 Buka file:
 
@@ -379,7 +379,7 @@ DB_PASSWORD=
 
 ---
 
-## 9️⃣ Jalankan Migration
+## Jalankan Migration
 
 Untuk membuat seluruh tabel database:
 
@@ -401,7 +401,7 @@ php artisan migrate --seed
 
 ---
 
-## 🔟 Buat Storage Link
+## Buat Storage Link
 
 DIGILIB menggunakan Laravel Storage untuk file seperti PDF dan foto.
 
@@ -421,7 +421,7 @@ storage/app/public
 
 ---
 
-## 1️⃣1️⃣ Bersihkan Cache
+## Bersihkan Cache
 
 Jalankan:
 
@@ -438,7 +438,7 @@ Perintah tersebut akan membersihkan:
 
 ---
 
-## 1️⃣2️⃣ Jalankan Aplikasi
+## Jalankan Aplikasi
 
 Jalankan development server:
 
@@ -454,7 +454,7 @@ http://127.0.0.1:8000
 
 ---
 
-# 🖥️ Instalasi Menggunakan Laragon
+# Instalasi Menggunakan Laragon
 
 Untuk pengguna **Laragon**, repository dapat ditempatkan di:
 
@@ -512,7 +512,7 @@ http://digilib-stkip.test
 
 ---
 
-# ⚡ Quick Installation
+# Quick Installation
 
 Untuk yang sudah terbiasa menggunakan Laravel:
 
@@ -546,7 +546,7 @@ php artisan serve
 
 ---
 
-# 📁 Penyimpanan File
+# Penyimpanan File
 
 File publik seperti PDF dan foto disimpan menggunakan Laravel Storage.
 
@@ -574,14 +574,14 @@ public/storage/
 
 ---
 
-# 📂 Struktur Fitur Aplikasi
+# Struktur Fitur Aplikasi
 
 ```text
 DIGILIB STKIP
 │
-├── 📊 Dashboard
+├──  Dashboard
 │
-├── 📚 Documents
+├──  Documents
 │   ├── Upload PDF
 │   ├── Metadata Dokumen
 │   ├── Penulis
@@ -589,63 +589,29 @@ DIGILIB STKIP
 │   ├── Program Studi
 │   └── Hak Akses
 │
-├── 👨‍🎓 Authors
+├──  Authors
 │   ├── Dosen
 │   └── Mahasiswa
 │
-├── 🗂️ Categories
+├──  Categories
 │
-├── 🎓 Study Programs
+├──  Study Programs
 │
-├── 👥 Members / Users
+├──  Members / Users
 │
-├── 📥 Downloads
+├──  Downloads
 │   └── Riwayat Unduhan
 │
-└── 🌐 Public Website
+└──  Public Website
     ├── Koleksi Terbaru
     ├── Dokumen Populer
     ├── Search
     └── Detail Dokumen
 ```
 
----
+#  Security
 
-# 📸 Screenshots
-
-## 🏠 Homepage
-
-Tambahkan screenshot halaman utama DIGILIB di sini.
-
-```markdown
-![DIGILIB Homepage](docs/screenshots/homepage.png)
-```
-
-## 📊 Dashboard Admin
-
-```markdown
-![DIGILIB Dashboard](docs/screenshots/dashboard.png)
-```
-
-## 📚 Manajemen Dokumen
-
-```markdown
-![DIGILIB Documents](docs/screenshots/documents.png)
-```
-
-## 👨‍🎓 Manajemen Penulis
-
-```markdown
-![DIGILIB Authors](docs/screenshots/authors.png)
-```
-
-> Buat folder `docs/screenshots` pada repository untuk menyimpan screenshot aplikasi.
-
----
-
-# 🔐 Security
-
-## ⚠️ Jangan Upload `.env`
+##  Jangan Upload `.env`
 
 File `.env` berisi informasi sensitif seperti:
 
@@ -672,7 +638,7 @@ git add .env
 
 ---
 
-# 🧹 Useful Commands
+#  Useful Commands
 
 ### Clear Cache
 
@@ -724,7 +690,7 @@ npm run build
 
 ---
 
-# 🔄 Update Project
+#  Update Project
 
 Jika project sudah pernah di-install dan ingin mengambil update terbaru:
 
@@ -756,7 +722,7 @@ npm run build
 
 ---
 
-# 🐛 Troubleshooting
+#  Troubleshooting
 
 ## Storage Tidak Bisa Diakses
 
@@ -844,7 +810,7 @@ php artisan migrate --seed
 
 ---
 
-# 🤝 Contribution
+#  Contribution
 
 Kontribusi dan pengembangan DIGILIB STKIP dapat dilakukan melalui GitHub.
 
@@ -879,13 +845,13 @@ git push origin feature/nama-fitur
 
 `Laravel` • `Filament` • `Livewire` • `MySQL`
 
-### 🚀 Awantech
+### Awantech
 
 **Digital Solutions & Web Development**
 
 ---
 
-# 📄 License
+# License
 
 Project **DIGILIB STKIP** dikembangkan untuk mendukung pengelolaan perpustakaan digital dan karya ilmiah **STKIP PGRI Ponorogo**.
 
@@ -893,12 +859,10 @@ Project **DIGILIB STKIP** dikembangkan untuk mendukung pengelolaan perpustakaan 
 
 <div align="center">
 
-# 📚 DIGILIB STKIP
+#  DIGILIB STKIP
 
 ### Digital Library Management System
 
 **Built with Laravel ❤️ Filament**
-
-⭐ Jika project ini bermanfaat, jangan lupa berikan Star.
 
 </div>
