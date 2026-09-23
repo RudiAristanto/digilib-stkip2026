@@ -122,7 +122,7 @@
 
                         </div>
 
-                        <div>
+                        <!-- <div>
 
                             <label class="mb-2 block font-semibold text-slate-700">
                                 Penulis
@@ -150,7 +150,7 @@
 
                             </select>
 
-                        </div>
+                        </div> -->
 
                         {{-- Program Studi --}}
                         <div class="border-t border-slate-200 pt-5">
