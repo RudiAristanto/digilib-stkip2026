@@ -28,8 +28,25 @@ class AuthorForm
                             ->maxLength(50),
 
                         TextInput::make('email')
+                            ->label('Email')
                             ->email()
+                            ->required()
                             ->unique(ignoreRecord: true),
+
+                        TextInput::make('password')
+                            ->label('Password')
+                            ->password()
+                            ->revealable()
+                            ->required(fn (string $operation): bool => $operation === 'create')
+                            ->minLength(8)
+                            ->same('password_confirmation'),
+
+                        TextInput::make('password_confirmation')
+                            ->label('Konfirmasi Password')
+                            ->password()
+                            ->revealable()
+                            ->required(fn (string $operation): bool => $operation === 'create')
+                            ->same('password'),
 
                         Select::make('status')
                             ->options([
