@@ -134,6 +134,13 @@
 
                     </div>
 
+                    <div class="mt-6 border-t border-slate-100 pt-4 text-center">
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                            Belum memiliki akun anggota? Silakan hubungi 
+                            <strong class="text-slate-700">petugas perpustakaan STKIP</strong> untuk pendaftaran akun.
+                        </p>
+                    </div>
+
                 </form>
 
             </div>

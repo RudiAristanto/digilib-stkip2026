@@ -178,10 +178,15 @@ class DocumentController extends Controller
             'studyProgram',
         ]);
 
-        abort_unless(
-            $document->status === 'published',
-            404
-        );
+        $user = auth()->user();
+        $isPrivileged = $user && ($user->hasRole('admin') || $user->id === $document->user_id);
+
+        if (! $isPrivileged) {
+            abort_unless(
+                $document->status === 'published',
+                404
+            );
+        }
 
         $relatedDocuments = Document::query()
             ->with([

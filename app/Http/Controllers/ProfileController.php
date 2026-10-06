@@ -34,12 +34,12 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        \App\Models\Author::where(
-            'email',
-            $request->user()->email
-        )->update([
-            'nama_penulis' => $request->user()->name,
-        ]);
+        if ($request->user()->author) {
+            $request->user()->author->update([
+                'nama_penulis' => $request->user()->name,
+                'email' => $request->user()->email,
+            ]);
+        }
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

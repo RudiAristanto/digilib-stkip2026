@@ -113,11 +113,11 @@
     ])
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white min-h-screen flex flex-col justify-between">
 
     @include('partials.navbar')
 
-    <main>
+    <main class="flex-grow">
         @yield('content')
     </main>
 
@@ -128,34 +128,34 @@
 {{-- Global Page Loader --}}
 <div
     id="page-loader"
-    class="fixed inset-0 z-[9999] hidden items-center justify-center bg-white/80 backdrop-blur-sm"
+    class="fixed inset-0 z-[9999] hidden items-center justify-center bg-slate-900/40 backdrop-blur-md transition-opacity duration-300"
 >
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center bg-white/95 px-8 py-6 rounded-2xl shadow-2xl border border-white/50">
 
-        <div class="relative flex h-20 w-20 items-center justify-center">
+        <div class="relative flex h-16 w-16 items-center justify-center">
 
             <div class="absolute inset-0 animate-spin rounded-full
-                        border-4 border-slate-200
-                        border-t-blue-700">
+                        border-4 border-slate-100
+                        border-t-blue-600">
             </div>
 
             <img
                 src="{{ asset('images/logo.png') }}"
                 alt="DIGILIB STKIP"
-                class="h-12 w-12 object-contain"
+                class="h-9 w-9 object-contain"
             >
 
         </div>
 
-        <p class="mt-4 font-semibold text-slate-700">
+        <p class="mt-4 font-bold text-slate-800 tracking-tight">
             DIGILIB STKIP
         </p>
 
-        <p class="mt-1 text-xs text-slate-400">
+        <p class="mt-1 text-xs text-slate-500 font-medium">
             Memuat halaman...
         </p>
 
-</div>
+    </div>
 </div>
 
 </html>

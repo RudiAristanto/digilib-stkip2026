@@ -49,16 +49,20 @@ class AuthorsImport implements
         $data = $this->map($row->toArray());
 
         DB::transaction(function () use ($data) {
+            $user = User::where('email', $data['email'])->first();
 
-            $user = User::updateOrCreate(
-                [
-                    'email' => $data['email'],
-                ],
-                [
+            if ($user) {
+                $user->update([
                     'name' => $data['nama_penulis'],
                     'password' => Hash::make($data['password']),
-                ]
-            );
+                ]);
+            } else {
+                $user = User::create([
+                    'name' => $data['nama_penulis'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                ]);
+            }
 
             if (! $user->hasRole('user')) {
                 $user->assignRole('user');
@@ -69,6 +73,7 @@ class AuthorsImport implements
                     'email' => $data['email'],
                 ],
                 [
+                    'user_id' => $user->id,
                     'nama_penulis' => $data['nama_penulis'],
                     'nim_nidn' => $data['nim_nidn'],
                     'status' => $data['status'],

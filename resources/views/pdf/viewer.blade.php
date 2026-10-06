@@ -30,6 +30,10 @@
             overflow: hidden;
             font-family: Arial, Helvetica, sans-serif;
             background: #f8fafc;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .viewer-page {
@@ -238,12 +242,14 @@
                     ← Kembali
                 </a>
 
-                <a
-                    href="{{ route('documents.download', $document) }}"
-                    class="viewer-button button-download"
-                >
-                    Download PDF
-                </a>
+                @if($document->access_type === 'public' || auth()->check())
+                    <a
+                        href="{{ route('documents.download', $document) }}"
+                        class="viewer-button button-download"
+                    >
+                        Download PDF
+                    </a>
+                @endif
 
             </div>
 
@@ -338,6 +344,31 @@
     </main>
 
 </div>
+
+<script>
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && (
+            e.key === 'c' || e.key === 'C' ||
+            e.key === 'a' || e.key === 'A' ||
+            e.key === 'p' || e.key === 'P' ||
+            e.key === 's' || e.key === 'S' ||
+            e.key === 'u' || e.key === 'U'
+        )) {
+            e.preventDefault();
+            return false;
+        }
+    });
+</script>
 
 </body>
 </html>

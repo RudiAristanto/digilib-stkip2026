@@ -4,21 +4,24 @@
 
 @section('content')
 
-<section class="min-h-screen bg-slate-50 py-10">
+<section class="min-h-screen py-10">
 
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Header --}}
         <div class="mb-8">
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-blue-600"></span>
+                Repositori Digital
+            </div>
 
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-800">
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
                 Koleksi Dokumen
             </h1>
 
-            <p class="mt-2 text-slate-500">
-                Jelajahi berbagai koleksi karya ilmiah dan dokumen akademik.
+            <p class="mt-2 text-sm sm:text-base text-slate-500 max-w-2xl">
+                Jelajahi berbagai karya ilmiah, skripsi, modul, dan publikasi penelitian yang tersedia.
             </p>
-
         </div>
 
 
@@ -27,21 +30,24 @@
               action="{{ route('documents.index') }}"
               class="mb-8">
 
-            <div class="flex flex-col md:flex-row gap-3">
+            <div class="relative flex flex-col sm:flex-row items-stretch gap-2 rounded-2xl bg-white p-2 shadow-sm ring-1 ring-slate-200 focus-within:ring-2 focus-within:ring-blue-500 transition-all">
 
-                <input
-                    type="text"
-                    name="search"
-                    value="{{ request('search') }}"
-                    placeholder="Cari judul, kata kunci, atau isi dokumen..."
-                    class="w-full flex-1 rounded-xl border border-slate-300 bg-white px-5 py-3.5 text-slate-700 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100">
+                <div class="relative flex-1 flex items-center">
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                        <x-heroicon-o-magnifying-glass class="h-5 w-5" />
+                    </div>
+                    <input
+                        type="text"
+                        name="search"
+                        value="{{ request('search') }}"
+                        placeholder="Cari judul, kata kunci, abstrak, atau isi dokumen..."
+                        class="w-full border-0 bg-transparent py-3 pl-11 pr-4 text-sm sm:text-base text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-0">
+                </div>
 
                 <button
                     type="submit"
-                    class="rounded-xl bg-blue-700 px-8 py-3.5 font-semibold text-white transition hover:bg-blue-800">
-
-                    Cari
-
+                    class="rounded-xl bg-blue-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-sm hover:bg-blue-700 active:scale-[0.98] transition">
+                    Cari Dokumen
                 </button>
 
             </div>
@@ -54,20 +60,21 @@
             {{-- SIDEBAR FILTER --}}
             <aside class="lg:col-span-1">
 
-                <div class="sticky top-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div class="sticky top-28 rounded-2xl border border-slate-200/90 bg-white p-5 sm:p-6 shadow-sm">
 
-                    <div class="mb-6 flex items-center justify-between">
+                    <div class="mb-5 flex items-center justify-between pb-3 border-b border-slate-100">
 
-                        <h2 class="text-lg font-bold text-slate-800">
-                            Filter Dokumen
-                        </h2>
+                        <div class="flex items-center gap-2">
+                            <x-heroicon-o-funnel class="h-5 w-5 text-blue-600" />
+                            <h2 class="text-base font-bold text-slate-900">
+                                Filter Dokumen
+                            </h2>
+                        </div>
 
                         <a
                             href="{{ route('documents.index') }}"
-                            class="text-sm font-medium text-blue-700 hover:text-blue-900">
-
+                            class="text-xs font-semibold text-slate-500 hover:text-blue-600 transition">
                             Reset
-
                         </a>
 
                     </div>
@@ -92,15 +99,13 @@
                         {{-- Kategori --}}
                         <div>
 
-                            <label class="mb-2 block font-semibold text-slate-700">
-
+                            <label class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-700">
                                 Kategori
-
                             </label>
 
                             <select
                                 name="category"
-                                class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-700 focus:border-blue-600 focus:ring-blue-600">
+                                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-700 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 transition">
 
                                 <option value="">
                                     Semua Kategori
@@ -122,55 +127,21 @@
 
                         </div>
 
-                        <!-- <div>
-
-                            <label class="mb-2 block font-semibold text-slate-700">
-                                Penulis
-                            </label>
-
-                            <select
-                                name="author"
-                                class="w-full rounded-xl border border-slate-300 px-4 py-3"
-                            >
-
-                                <option value="">
-                                    Semua Penulis
-                                </option>
-
-                                @foreach($authors as $author)
-
-                                    <option
-                                        value="{{ $author->id }}"
-                                        @selected(request('author') == $author->id)
-                                    >
-                                        {{ $author->nama_penulis }}
-                                    </option>
-
-                                @endforeach
-
-                            </select>
-
-                        </div> -->
-
                         {{-- Program Studi --}}
-                        <div class="border-t border-slate-200 pt-5">
+                        <div class="border-t border-slate-100 pt-5">
 
                             <div class="mb-3">
-                                <h3 class="font-semibold text-slate-700">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">
                                     Program Studi
                                 </h3>
-
-                                <div class="mt-2 h-0.5 w-12 rounded bg-yellow-400"></div>
                             </div>
 
-                            <div class="max-h-56 space-y-2.5 overflow-y-auto pr-2">
+                            <div class="max-h-52 space-y-2 overflow-y-auto pr-1">
 
                                 @foreach($studyPrograms as $prodi)
 
                                     <label
-                                        class="flex cursor-pointer items-start gap-2.5
-                                            text-sm text-slate-600 transition
-                                            hover:text-blue-700"
+                                        class="flex cursor-pointer items-start gap-2.5 rounded-lg p-1.5 text-xs sm:text-sm text-slate-600 transition hover:bg-slate-50 hover:text-blue-700"
                                     >
 
                                         <input
@@ -189,19 +160,19 @@
                                             )
 
                                             class="mt-0.5 h-4 w-4 rounded
-                                                border-slate-300 text-blue-700
-                                                focus:ring-blue-600"
+                                                border-slate-300 text-blue-600
+                                                focus:ring-blue-500"
                                         >
 
                                         <span class="flex flex-1 items-center justify-between gap-2">
 
-                                            <span class="leading-5">
+                                            <span class="leading-tight">
                                                 {{ $prodi->nama_prodi }}
                                             </span>
 
                                             <span
                                                 class="shrink-0 rounded-full bg-slate-100
-                                                    px-2 py-0.5 text-xs font-medium text-slate-500"
+                                                    px-2 py-0.5 text-[10px] font-semibold text-slate-500"
                                             >
                                                 {{ $prodi->published_documents_count }}
                                             </span>
@@ -217,17 +188,15 @@
                         </div>
 
                         {{-- Tahun --}}
-                        <div>
+                        <div class="border-t border-slate-100 pt-5">
 
-                            <label class="mb-2 block font-semibold text-slate-700">
-
+                            <label class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-700">
                                 Tahun Terbit
-
                             </label>
 
                             <select
                                 name="tahun"
-                                class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-700 focus:border-blue-600 focus:ring-blue-600">
+                                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-700 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 transition">
 
                                 <option value="">
                                     Semua Tahun
@@ -253,15 +222,13 @@
                         {{-- Urutkan --}}
                         <div>
 
-                            <label class="mb-2 block font-semibold text-slate-700">
-
-                                Urutkan
-
+                            <label class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-700">
+                                Urutkan Berdasarkan
                             </label>
 
                             <select
                                 name="sort"
-                                class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-700 focus:border-blue-600 focus:ring-blue-600">
+                                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-700 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 transition">
 
                                 <option
                                     value="latest"
@@ -302,10 +269,8 @@
 
                         <button
                             type="submit"
-                            class="w-full rounded-xl bg-blue-700 py-3 font-semibold text-white transition hover:bg-blue-800">
-
+                            class="w-full rounded-xl bg-blue-600 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-blue-700 active:scale-[0.98]">
                             Terapkan Filter
-
                         </button>
 
                     </form>

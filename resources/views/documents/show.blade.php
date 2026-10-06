@@ -311,30 +311,60 @@
                     </div>
 
 
-                    {{-- Action --}}
-                    <div class="mt-8 flex flex-wrap gap-3">
+                    {{-- Action / Member Notice --}}
+                    @if($document->access_type === 'private' && !auth()->check())
+                        <div class="mt-8 rounded-2xl border border-amber-200 bg-amber-50/70 p-5 shadow-sm">
+                            <div class="flex items-start gap-3.5">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+                                    <x-heroicon-o-lock-closed class="h-5 w-5" />
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-sm font-bold text-slate-900">
+                                        Dokumen Khusus Anggota
+                                    </h4>
+                                    <p class="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                        Dokumen ini dibatasi untuk sivitas akademika STKIP. Silakan masuk menggunakan akun Anda untuk membaca online dan mengunduh berkas lengkap.
+                                    </p>
+                                    <p class="mt-2 text-xs text-amber-800 bg-amber-100/70 rounded-lg p-2.5">
+                                        <strong>Catatan:</strong> Pendaftaran akun anggota dilakukan melalui <strong>petugas perpustakaan</strong>. Silakan hubungi bagian pelayanan perpustakaan STKIP untuk mendapatkan akses akun.
+                                    </p>
+                                    <div class="mt-4 flex flex-wrap gap-2.5">
+                                        <a
+                                            href="{{ route('login') }}"
+                                            class="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition"
+                                        >
+                                            <x-heroicon-o-arrow-right-on-rectangle class="h-4 w-4" />
+                                            Masuk ke Akun
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="mt-8 flex flex-wrap gap-3">
 
-                        <a
-                            href="{{ route('pdf.viewer', $document) }}"
-                            class="inline-flex items-center gap-2 rounded-xl bg-blue-700 px-5 py-3 font-semibold text-white hover:bg-blue-800 transition">
+                            <a
+                                href="{{ route('pdf.viewer', $document) }}"
+                                class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-bold text-white shadow-sm hover:bg-blue-700 active:scale-[0.98] transition">
 
-                            <x-heroicon-o-book-open class="w-5 h-5" />
+                                <x-heroicon-o-book-open class="w-5 h-5" />
 
-                            Baca Online
+                                <span>Baca Online</span>
 
-                        </a>
+                            </a>
 
-                        <a
-                            href="{{ route('documents.download', $document) }}"
-                            class="inline-flex items-center gap-2 rounded-xl border border-blue-700 px-5 py-3 font-semibold text-blue-700 hover:bg-blue-50 transition">
+                            <a
+                                href="{{ route('documents.download', $document) }}"
+                                class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 font-bold text-slate-700 shadow-sm hover:bg-slate-50 hover:text-blue-600 hover:border-blue-200 active:scale-[0.98] transition">
 
-                            <x-heroicon-o-arrow-down-tray class="w-5 h-5" />
+                                <x-heroicon-o-arrow-down-tray class="w-5 h-5 text-slate-400" />
 
-                            Download PDF
+                                <span>Unduh PDF</span>
 
-                        </a>
+                            </a>
 
-                    </div>
+                        </div>
+                    @endif
 
                 </div>
 

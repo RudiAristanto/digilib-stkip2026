@@ -12,16 +12,21 @@ class PdfViewerController extends Controller
 {
     public function show(Document $document)
     {
-        abort_unless(
-            $document->status === 'published',
-            404
-        );
+        $user = auth()->user();
+        $isPrivileged = $user && ($user->hasRole('admin') || $user->id === $document->user_id);
 
-        if (
-            $document->access_type === 'private'
-            && ! auth()->check()
-        ) {
-            abort(403);
+        if (! $isPrivileged) {
+            abort_unless(
+                $document->status === 'published',
+                404
+            );
+
+            if (
+                $document->access_type === 'private'
+                && ! auth()->check()
+            ) {
+                abort(403);
+            }
         }
 
         $disk = Storage::disk('public');
@@ -32,7 +37,10 @@ class PdfViewerController extends Controller
             'File PDF tidak ditemukan.'
         );
 
-        $document->increment('jumlah_view');
+        // Hanya increment view untuk dokumen published
+        if ($document->status === 'published') {
+            $document->increment('jumlah_view');
+        }
 
         $pdfUrl = route('documents.stream', $document);
 
@@ -44,16 +52,21 @@ class PdfViewerController extends Controller
 
     public function stream(Document $document)
     {
-        abort_unless(
-            $document->status === 'published',
-            404
-        );
+        $user = auth()->user();
+        $isPrivileged = $user && ($user->hasRole('admin') || $user->id === $document->user_id);
 
-        if (
-            $document->access_type === 'private'
-            && ! auth()->check()
-        ) {
-            abort(403);
+        if (! $isPrivileged) {
+            abort_unless(
+                $document->status === 'published',
+                404
+            );
+
+            if (
+                $document->access_type === 'private'
+                && ! auth()->check()
+            ) {
+                abort(403);
+            }
         }
 
         $disk = Storage::disk('public');
@@ -77,16 +90,21 @@ class PdfViewerController extends Controller
         Request $request,
         Document $document
     ) {
-        abort_unless(
-            $document->status === 'published',
-            404
-        );
+        $user = auth()->user();
+        $isPrivileged = $user && ($user->hasRole('admin') || $user->id === $document->user_id);
 
-        if (
-            $document->access_type === 'private'
-            && ! auth()->check()
-        ) {
-            abort(403);
+        if (! $isPrivileged) {
+            abort_unless(
+                $document->status === 'published',
+                404
+            );
+
+            if (
+                $document->access_type === 'private'
+                && ! auth()->check()
+            ) {
+                abort(403);
+            }
         }
 
         $disk = Storage::disk('public');
@@ -97,7 +115,9 @@ class PdfViewerController extends Controller
             'File PDF tidak ditemukan.'
         );
 
-        $document->increment('jumlah_download');
+        if ($document->status === 'published') {
+            $document->increment('jumlah_download');
+        }
 
         Download::create([
             'document_id'   => $document->id,

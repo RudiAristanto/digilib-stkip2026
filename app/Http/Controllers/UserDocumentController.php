@@ -55,11 +55,16 @@ class UserDocumentController extends Controller
                 'email' => $user->email,
             ],
             [
+                'user_id' => $user->id,
                 'nama_penulis' => $user->name,
                 'nim_nidn' => null,
                 'status' => 'Mahasiswa',
             ]
         );
+
+        if (!$author->user_id) {
+            $author->update(['user_id' => $user->id]);
+        }
 
         $studyPrograms = StudyProgram::orderBy('nama_prodi')->get();
 
@@ -213,11 +218,16 @@ class UserDocumentController extends Controller
                 'email' => $user->email,
             ],
             [
+                'user_id' => $user->id,
                 'nama_penulis' => $user->name,
                 'nim_nidn' => null,
                 'status' => 'Mahasiswa',
             ]
         );
+
+        if (!$author->user_id) {
+            $author->update(['user_id' => $user->id]);
+        }
 
         $validated = $request->validate([
             'judul' => [
@@ -300,7 +310,7 @@ class UserDocumentController extends Controller
 
             'kata_kunci' => $validated['kata_kunci'] ?? null,
 
-            'study_program_id' => $request->study_program_id,
+            'study_program_id' => $validated['study_program_id'],
 
             'tahun_terbit' => $validated['tahun_terbit'],
 
