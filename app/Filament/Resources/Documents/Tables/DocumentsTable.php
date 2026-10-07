@@ -165,9 +165,7 @@ class DocumentsTable
                 ->url(fn ($record) =>
                     route('pdf.viewer', $record)
                 )
-                ->openUrlInNewTab()
-
-    ->openUrlInNewTab(),
+                ->openUrlInNewTab(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

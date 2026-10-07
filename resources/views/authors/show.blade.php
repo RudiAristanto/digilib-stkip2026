@@ -9,10 +9,10 @@
     <div class="max-w-7xl mx-auto px-6">
 
         <a
-            href="{{ route('authors.index') }}"
-            class="text-sm font-semibold text-blue-700"
+            href="{{ Route::has('authors.index') ? route('authors.index') : route('documents.index') }}"
+            class="text-sm font-semibold text-blue-700 hover:underline"
         >
-            ← Kembali ke Penulis
+            ← Kembali
         </a>
 
         <div class="mt-5 rounded-2xl border border-slate-200 bg-white p-7">

@@ -132,6 +132,15 @@ class DocumentForm
                         ->searchable()
                         ->required(),
 
+                        Select::make('access_type')
+                            ->label('Hak Akses')
+                            ->options([
+                                'public' => 'Public (Terbuka untuk Umum)',
+                                'private' => 'Private (Khusus Anggota / Login)',
+                            ])
+                            ->default('public')
+                            ->required(),
+
                         TagsInput::make('kata_kunci')
                             ->separator(','),
 
