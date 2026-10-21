@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Document;
 use App\Models\UserGuide;
@@ -11,6 +12,11 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $banners = Banner::query()
+            ->where('is_active', true)
+            ->orderBy('urutan')
+            ->get();
+
         $latestDocuments = Document::query()
             ->with([
                 'author',
@@ -69,6 +75,7 @@ class HomeController extends Controller
         ];
 
         return view('home', compact(
+            'banners',
             'latestDocuments',
             'popularDocuments',
             'categories',

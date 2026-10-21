@@ -1,4 +1,4 @@
-<nav class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-lg transition-all duration-300">
+<nav class="sticky top-0 z-50 border-b border-slate-800 bg-[#0c1527] text-white transition-all duration-300 shadow-md">
 
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
@@ -8,7 +8,7 @@
             <a href="{{ route('home') }}"
                class="group flex items-center gap-3.5 transition-transform hover:scale-[1.01]">
 
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50/80 p-2 ring-1 ring-blue-100 shadow-sm transition group-hover:bg-blue-100/80">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 p-2 ring-1 ring-white/15 shadow-sm transition group-hover:bg-white/20">
                     <img
                         src="{{ asset('images/logo.png') }}"
                         alt="DIGILIB STKIP"
@@ -17,8 +17,8 @@
                 </div>
 
                 <div>
-                    <div class="text-lg font-extrabold tracking-tight text-slate-900 group-hover:text-blue-700 transition sm:text-xl">
-                        DIGILIB <span class="text-blue-600">STKIP</span>
+                    <div class="text-lg font-extrabold tracking-tight text-white group-hover:text-amber-300 transition sm:text-xl">
+                        DIGILIB <span class="text-amber-400">STKIP</span>
                     </div>
 
                     <div class="text-[10px] font-semibold tracking-widest text-slate-400 uppercase">
@@ -36,8 +36,8 @@
                     href="{{ route('home') }}"
                     class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200
                     {{ request()->routeIs('home')
-                        ? 'bg-blue-50 text-blue-700 shadow-sm'
-                        : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50' }}"
+                        ? 'bg-blue-600/30 text-amber-300 border border-blue-500/30 shadow-sm'
+                        : 'text-slate-300 hover:text-white hover:bg-white/10' }}"
                 >
                     Beranda
                 </a>
@@ -46,8 +46,8 @@
                     href="{{ route('documents.index') }}"
                     class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200
                     {{ request()->routeIs('documents.*') || request()->routeIs('pdf.viewer')
-                        ? 'bg-blue-50 text-blue-700 shadow-sm'
-                        : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50' }}"
+                        ? 'bg-blue-600/30 text-amber-300 border border-blue-500/30 shadow-sm'
+                        : 'text-slate-300 hover:text-white hover:bg-white/10' }}"
                 >
                     Dokumen
                 </a>
@@ -56,8 +56,8 @@
                     href="{{ route('categories.index') }}"
                     class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200
                     {{ request()->routeIs('categories.*')
-                        ? 'bg-blue-50 text-blue-700 shadow-sm'
-                        : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50' }}"
+                        ? 'bg-blue-600/30 text-amber-300 border border-blue-500/30 shadow-sm'
+                        : 'text-slate-300 hover:text-white hover:bg-white/10' }}"
                 >
                     Kategori
                 </a>
@@ -66,8 +66,8 @@
                     href="{{ route('about') }}"
                     class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200
                     {{ request()->routeIs('about')
-                        ? 'bg-blue-50 text-blue-700 shadow-sm'
-                        : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50' }}"
+                        ? 'bg-blue-600/30 text-amber-300 border border-blue-500/30 shadow-sm'
+                        : 'text-slate-300 hover:text-white hover:bg-white/10' }}"
                 >
                     Tentang
                 </a>
@@ -185,8 +185,8 @@
                     type="button"
                     id="mobileMenuButton"
                     class="inline-flex h-11 w-11 items-center justify-center
-                           rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm
-                           hover:bg-slate-50 hover:text-blue-600 transition lg:hidden"
+                           rounded-xl border border-slate-700 bg-slate-800 text-slate-200 shadow-sm
+                           hover:bg-slate-700 hover:text-white transition lg:hidden"
                     aria-label="Buka menu"
                     aria-expanded="false"
                 >
@@ -209,7 +209,7 @@
         {{-- MOBILE MENU --}}
         <div
             id="mobileMenu"
-            class="hidden border-t border-slate-200/80 bg-white/95 backdrop-blur-md pb-6 pt-4 lg:hidden rounded-b-2xl shadow-xl transition-all"
+            class="hidden border-t border-slate-800 bg-[#0c1527] text-white pb-6 pt-4 lg:hidden rounded-b-2xl shadow-xl transition-all"
         >
 
             <div class="space-y-1.5 px-2">
@@ -218,8 +218,8 @@
                     href="{{ route('home') }}"
                     class="block rounded-xl px-4 py-3 text-sm font-semibold transition
                     {{ request()->routeIs('home')
-                        ? 'bg-blue-50 text-blue-700'
-                        : 'text-slate-700 hover:bg-slate-100' }}"
+                        ? 'bg-blue-600/30 text-amber-300'
+                        : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}"
                 >
                     Beranda
                 </a>
@@ -228,8 +228,8 @@
                     href="{{ route('documents.index') }}"
                     class="block rounded-xl px-4 py-3 text-sm font-semibold transition
                     {{ request()->routeIs('documents.*') || request()->routeIs('pdf.viewer')
-                        ? 'bg-blue-50 text-blue-700'
-                        : 'text-slate-700 hover:bg-slate-100' }}"
+                        ? 'bg-blue-600/30 text-amber-300'
+                        : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}"
                 >
                     Dokumen
                 </a>
@@ -238,8 +238,8 @@
                     href="{{ route('categories.index') }}"
                     class="block rounded-xl px-4 py-3 text-sm font-semibold transition
                     {{ request()->routeIs('categories.*')
-                        ? 'bg-blue-50 text-blue-700'
-                        : 'text-slate-700 hover:bg-slate-100' }}"
+                        ? 'bg-blue-600/30 text-amber-300'
+                        : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}"
                 >
                     Kategori
                 </a>
@@ -248,8 +248,8 @@
                     href="{{ route('about') }}"
                     class="block rounded-xl px-4 py-3 text-sm font-semibold transition
                     {{ request()->routeIs('about')
-                        ? 'bg-blue-50 text-blue-700'
-                        : 'text-slate-700 hover:bg-slate-100' }}"
+                        ? 'bg-blue-600/30 text-amber-300'
+                        : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}"
                 >
                     Tentang
                 </a>

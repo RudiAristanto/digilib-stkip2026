@@ -308,6 +308,23 @@
 
                         </div>
 
+                        @if($document->total_pages)
+                            <div class="flex items-center gap-2 text-sm text-slate-500">
+
+                                <x-heroicon-o-document-duplicate
+                                    class="h-5 w-5 text-slate-400"
+                                />
+
+                                <span>
+                                    <strong class="font-semibold text-slate-700">
+                                        {{ $document->total_pages }}
+                                    </strong>
+                                    Halaman
+                                </span>
+
+                            </div>
+                        @endif
+
                     </div>
 
 

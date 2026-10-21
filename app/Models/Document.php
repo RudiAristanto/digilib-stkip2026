@@ -68,6 +68,13 @@ protected $fillable = [
                 Storage::disk('public')->exists($document->file_pdf)
             ) {
                 $document->file_size = Storage::disk('public')->size($document->file_pdf);
+
+                if (empty($document->total_pages)) {
+                    $pages = \App\Services\PdfPageCounterService::countPages($document->file_pdf);
+                    if ($pages) {
+                        $document->total_pages = $pages;
+                    }
+                }
             }
 
         });

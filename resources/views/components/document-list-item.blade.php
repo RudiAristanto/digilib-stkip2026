@@ -73,6 +73,13 @@
         {{-- Footer actions & stats --}}
         <div class="mt-2 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4">
             <div class="flex items-center gap-4 text-xs font-semibold text-slate-400">
+                @if($document->total_pages)
+                    <span class="inline-flex items-center gap-1.5 text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md font-medium" title="Jumlah Halaman">
+                        <x-heroicon-o-document-duplicate class="h-3.5 w-3.5 text-blue-500" />
+                        {{ $document->total_pages }} Hlm
+                    </span>
+                @endif
+
                 <span class="inline-flex items-center gap-1.5" title="Dilihat">
                     <x-heroicon-o-eye class="h-4 w-4 text-slate-400" />
                     {{ number_format($document->jumlah_view ?? 0) }}

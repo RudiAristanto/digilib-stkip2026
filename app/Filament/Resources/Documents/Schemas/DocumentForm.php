@@ -141,6 +141,14 @@ class DocumentForm
                             ->default('public')
                             ->required(),
 
+                        TextInput::make('total_pages')
+                            ->label('Jumlah Halaman')
+                            ->numeric()
+                            ->minValue(1)
+                            ->suffix('Halaman')
+                            ->placeholder('Otomatis dihitung dari PDF jika kosong')
+                            ->helperText('Dapat diisi manual atau dibiarkan kosong agar dihitung otomatis dari file PDF.'),
+
                         TagsInput::make('kata_kunci')
                             ->separator(','),
 

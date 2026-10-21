@@ -138,6 +138,13 @@ class UserDocumentController extends Controller
                 'in:public,private',
             ],
 
+            'total_pages' => [
+                'nullable',
+                'integer',
+                'min:1',
+                'max:10000',
+            ],
+
             'file_pdf' => [
                 'nullable',
                 File::types(['pdf'])
@@ -161,6 +168,7 @@ class UserDocumentController extends Controller
             'kata_kunci' => $validated['kata_kunci'] ?? null,
             'tahun_terbit' => $validated['tahun_terbit'],
             'access_type' => $validated['access_type'],
+            'total_pages' => $validated['total_pages'] ?? null,
 
             // Setelah revisi, kembali menunggu verifikasi admin.
             'status' => 'pending',
@@ -269,6 +277,13 @@ class UserDocumentController extends Controller
                 'in:public,private',
             ],
 
+            'total_pages' => [
+                'nullable',
+                'integer',
+                'min:1',
+                'max:10000',
+            ],
+
             'file_pdf' => [
                 'required',
                 File::types(['pdf'])
@@ -313,6 +328,8 @@ class UserDocumentController extends Controller
             'study_program_id' => $validated['study_program_id'],
 
             'tahun_terbit' => $validated['tahun_terbit'],
+
+            'total_pages' => $validated['total_pages'] ?? null,
 
             'file_pdf' => $pdfPath,
 

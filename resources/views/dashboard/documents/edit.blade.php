@@ -204,6 +204,28 @@
                 </div>
 
 
+                <div>
+
+                    <label class="mb-2 block font-semibold text-slate-700">
+                        Jumlah Halaman <span class="text-xs font-normal text-slate-400">(Opsional)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        name="total_pages"
+                        min="1"
+                        value="{{ old('total_pages', $document->total_pages) }}"
+                        placeholder="Otomatis dihitung jika kosong"
+                        class="w-full rounded-xl border border-slate-300 px-4 py-3"
+                    >
+
+                    <p class="mt-1 text-xs text-slate-500">
+                        Dapat disesuaikan secara manual atau dibiarkan kosong agar dihitung otomatis dari file PDF.
+                    </p>
+
+                </div>
+
+
                 <div class="grid gap-6 md:grid-cols-2">
 
                     <div>

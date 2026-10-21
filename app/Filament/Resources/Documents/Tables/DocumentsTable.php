@@ -53,6 +53,14 @@ class DocumentsTable
                 TextColumn::make('tahun_terbit')
                     ->sortable(),
 
+                TextColumn::make('total_pages')
+                    ->label('Halaman')
+                    ->sortable()
+                    ->badge()
+                    ->color('gray')
+                    ->suffix(' Hal')
+                    ->placeholder('-'),
+
                 TextColumn::make('status')
                     ->badge()
                     ->colors([
@@ -124,40 +132,76 @@ class DocumentsTable
                 RestoreAction::make(),
                 ForceDeleteAction::make(),
 
-                Action::make('approve')
-                ->label('Approve')
-                ->icon('heroicon-o-check-circle')
-                ->color('success')
-                ->requiresConfirmation()
-                ->visible(fn ($record) => $record->status !== 'published')
-                ->action(function ($record) {
+                Action::make('publish')
+                    ->label('Publish')
+                    ->icon('heroicon-o-check-circle')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->modalHeading('Publikasikan Dokumen')
+                    ->modalDescription('Apakah Anda yakin ingin mempublikasikan dokumen ini? Dokumen yang dipublikasikan akan dapat diakses oleh pengguna.')
+                    ->visible(fn ($record) => $record->status !== 'published')
+                    ->action(function ($record) {
+                        $record->update([
+                            'status' => 'published',
+                            'review_note' => null,
+                        ]);
 
-                    $record->update([
-                        'status' => 'published',
-                        'review_note' => null,
-                    ]);
-                    $record->user?->notify(
-                    new DocumentStatusUpdated($record)
-                    );
-                }),
+                        $record->user?->notify(
+                            new DocumentStatusUpdated($record)
+                        );
+
+                        \Filament\Notifications\Notification::make()
+                            ->title('Dokumen berhasil dipublikasikan')
+                            ->success()
+                            ->send();
+                    }),
+
+                Action::make('unpublish')
+                    ->label('Unpublish')
+                    ->icon('heroicon-o-arrow-path')
+                    ->color('warning')
+                    ->requiresConfirmation()
+                    ->modalHeading('Tarik Publikasi (Unpublish)')
+                    ->modalDescription('Apakah Anda yakin ingin menarik dokumen ini dari publikasi? Dokumen akan berstatus draft/pending sehingga tidak muncul di halaman publik.')
+                    ->visible(fn ($record) => $record->status === 'published')
+                    ->action(function ($record) {
+                        $record->update([
+                            'status' => 'draft',
+                        ]);
+
+                        $record->user?->notify(
+                            new DocumentStatusUpdated($record)
+                        );
+
+                        \Filament\Notifications\Notification::make()
+                            ->title('Publikasi dokumen berhasil ditarik (Unpublished)')
+                            ->warning()
+                            ->send();
+                    }),
 
                 Action::make('reject')
-                ->label('Reject')
-                ->icon('heroicon-o-x-circle')
-                ->color('danger')
-                ->form([
-                    Textarea::make('review_note')
-                        ->label('Alasan Penolakan')
-                        ->required(),
-                ])->action(function ($record, array $data) {
-                    $record->update([
-                        'status' => 'rejected',
-                        'review_note' => $data['review_note'],
-                    ]);
-                    $record->user?->notify(
-                        new DocumentStatusUpdated($record)
-                    );
-                }),
+                    ->label('Reject')
+                    ->icon('heroicon-o-x-circle')
+                    ->color('danger')
+                    ->visible(fn ($record) => $record->status === 'pending')
+                    ->form([
+                        Textarea::make('review_note')
+                            ->label('Alasan Penolakan')
+                            ->required(),
+                    ])->action(function ($record, array $data) {
+                        $record->update([
+                            'status' => 'rejected',
+                            'review_note' => $data['review_note'],
+                        ]);
+                        $record->user?->notify(
+                            new DocumentStatusUpdated($record)
+                        );
+
+                        \Filament\Notifications\Notification::make()
+                            ->title('Dokumen ditolak')
+                            ->danger()
+                            ->send();
+                    }),
 
                 Action::make('preview')
                 ->label('Preview')
@@ -169,6 +213,43 @@ class DocumentsTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
+                    \Filament\Actions\BulkAction::make('publishBulk')
+                        ->label('Publish Terpilih')
+                        ->icon('heroicon-o-check-circle')
+                        ->color('success')
+                        ->requiresConfirmation()
+                        ->action(function (\Illuminate\Database\Eloquent\Collection $records) {
+                            $records->each(function ($record) {
+                                $record->update([
+                                    'status' => 'published',
+                                    'review_note' => null,
+                                ]);
+                            });
+
+                            \Filament\Notifications\Notification::make()
+                                ->title('Dokumen terpilih berhasil dipublikasikan')
+                                ->success()
+                                ->send();
+                        }),
+
+                    \Filament\Actions\BulkAction::make('unpublishBulk')
+                        ->label('Unpublish Terpilih')
+                        ->icon('heroicon-o-arrow-path')
+                        ->color('warning')
+                        ->requiresConfirmation()
+                        ->action(function (\Illuminate\Database\Eloquent\Collection $records) {
+                            $records->each(function ($record) {
+                                $record->update([
+                                    'status' => 'draft',
+                                ]);
+                            });
+
+                            \Filament\Notifications\Notification::make()
+                                ->title('Publikasi dokumen terpilih berhasil ditarik')
+                                ->warning()
+                                ->send();
+                        }),
+
                     DeleteBulkAction::make(),
                     RestoreBulkAction::make(),
                     ForceDeleteBulkAction::make(),
